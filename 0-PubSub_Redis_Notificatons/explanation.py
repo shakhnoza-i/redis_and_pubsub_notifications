@@ -15,3 +15,24 @@ Only those subscribers will get the message who are subscribed at the time
 of sending the message.
 Redis doesn't guarantee delivery of your message sent on the channel
 """
+
+""" 
+publish ch1 "Hello"
+(integer) 0 as answer - cause no subscribe now for ch1
+subscribe ch1
+(integer) 0 as answer - subscribed for first channel
+CTRL+C/exit - to unsubscribe
+"""
+
+"""  
+Pattern subscription
+   psubscribe ch*  - create a pattern to subscribe all channels where name 
+is started with ch
+   psubscribe ch[12e]  - it will be matching like this ch1 or ch2 or che - 
+only for one of this characters
+   pubsub - for some administration tasks, pubsub command have sub commands 
+and using sub commands you can check out number of subscribers etc
+   pubsub Numsub ch1  - check number of subscribers, but it doesn't check for 
+number of subscribers for a patterned subscription
+pubsub numpat - check number of subscribers for a patterned subscription
+"""
