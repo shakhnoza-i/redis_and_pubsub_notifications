@@ -20,7 +20,7 @@ Redis doesn't guarantee delivery of your message sent on the channel
 publish ch1 "Hello"
 (integer) 0 as answer - cause no subscribe now for ch1
 subscribe ch1
-(integer) 0 as answer - subscribed for first channel
+(integer) 1 as answer - subscribed channel is first
 CTRL+C/exit - to unsubscribe
 """
 
@@ -32,7 +32,7 @@ is started with ch
 only for one of this characters
    pubsub - for some administration tasks, pubsub command have sub commands 
 and using sub commands you can check out number of subscribers etc
-   pubsub Numsub ch1  - check number of subscribers, but it doesn't check for 
-number of subscribers for a patterned subscription
+   pubsub Numsub ch1  - check number of subscribers, but it doesn't check 
+for number of subscribers for a patterned subscription
 pubsub numpat - check number of subscribers for a patterned subscription
 """

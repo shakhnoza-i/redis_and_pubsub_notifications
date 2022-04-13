@@ -3,13 +3,12 @@ import redis
 r = redis.Redis('192.168.99.100')
 
 product = [
-    {
-        "color": "black",
+    { # dictionary - cause redis map key with value
+        "color": "black", # like hashes inside redis
         "price": 49.99,
         "style": "fitted",
         "quantity": 5,
         "nPurchased": 0,
-
     },
 
     {
@@ -37,16 +36,23 @@ for i in product:
     shirts[key] = i
     id += 1
 
-print(shirts)
+print(shirts) # {'shirt:1':{'color': 'black',...}, 'shirt:2':{},..}
 
-r.flushdb()  # For Development Environment only
+r.flushdb()  # For Development Environment only, not production
+            # delete all of your keys inside redis
 
 pipe = r.pipeline()
 
 for s_id, shirt in shirts.items():
     for field, value in shirt.items():
-        pipe.hset(s_id, field, value)
+        pipe.hset(s_id, field, value) # s_id - key name,
+                                    # field, value - separate them to store in db
 
 pipe.execute()
 
 r.close()
+
+# inside redis-cli
+# hgetall shirt:1
+# 1) "color"
+# 2) "black"
