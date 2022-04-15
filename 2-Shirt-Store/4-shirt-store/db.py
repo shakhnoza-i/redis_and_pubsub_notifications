@@ -39,7 +39,7 @@ for i in product:
 
 print(shirts)
 
-r.flushdb()  # For Development Environment only
+# r.flushdb()  # For Development Environment only
 
 pipe = r.pipeline()
 

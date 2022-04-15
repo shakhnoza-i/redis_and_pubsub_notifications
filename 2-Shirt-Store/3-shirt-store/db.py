@@ -38,17 +38,17 @@ for i in product:
 
 print(shirts) # {'shirt:1':{'color': 'black',...}, 'shirt:2':{},..}
 
-r.flushdb()  # For Development Environment only, not production
+r.flushdb()  # For Development Environment only, not Production
             # delete all of your keys inside redis
 
-pipe = r.pipeline()
+pipe = r.pipeline() # without it we hit db as many times as for loop runs
 
 for s_id, shirt in shirts.items():
     for field, value in shirt.items():
         pipe.hset(s_id, field, value) # s_id - key name,
                                     # field, value - separate them to store in db
 
-pipe.execute()
+pipe.execute() # execute all commands at once only
 
 r.close()
 

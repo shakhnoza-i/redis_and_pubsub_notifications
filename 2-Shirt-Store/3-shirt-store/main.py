@@ -3,7 +3,7 @@ import redis
 r = redis.Redis('192.168.99.100')
 
 
-def scan_keys(pattern, pos: int = 0) -> list:
+def scan_keys(pattern, pos: int = 0) -> list: # scan 0 match check*
     shirts = []
     while True:
         pos, val = r.scan(cursor=pos, match=pattern)
@@ -14,5 +14,5 @@ def scan_keys(pattern, pos: int = 0) -> list:
     return shirts
 
 
-shirts = scan_keys("shirt:*")
+shirts = scan_keys("shirt:*") # "shirt:*" is pattern
 print(shirts)
