@@ -14,13 +14,27 @@ Sets basic commands
 
 add set with key party
 > sadd party Bob Rob Robert Sam
-integer 4 - as output
+return integer 4 - as output
 
 get the value of key
-> smembers party
+> smembers key
 return unordered collection of strings
 
-check that particular member exists in your set or not 
+check that particular member exists in set or not 
 > sismember key member
 return 0 - if not exists, 1 - if exists
+this command is case sensitive
+
+check total number of elements in set
+> scard key
+
+move one member of set into another set
+> smove source destination member
+
+remove one or more(quantity) random elements from set 
+> spop key quantity 
+return removed elements
+
+remove a member(s) from set
+> srem key member
 """
